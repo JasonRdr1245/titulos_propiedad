@@ -3,7 +3,14 @@ import { Cliente } from 'src/cliente/entities/cliente.entity';
 import { Encargado } from 'src/encargado/entities/encargado.entity';
 import { Interviniente } from 'src/intervinientes/entities/interviniente.entity';
 import { PersonaJuridica } from 'src/persona-juridica/entities/persona-juridica.entity';
-import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryColumn,
+} from 'typeorm';
 
 @Entity({ name: 'titulo_de_propiedad' })
 export class TituloPropiedad {
@@ -41,31 +48,36 @@ export class TituloPropiedad {
     length: 30,
   })
   tipo_registro: string;
- @Column({
+  @Column({
     type: 'varchar',
     length: 50,
   })
- 
-  oficina_magistral:string;
- @Column({
-    type: 'varchar',
-    length: 200,
-  })
-  nombre_participante:string;
+  oficina_magistral: string;
   @Column({
     type: 'varchar',
     length: 200,
   })
-  persona_natural:string;
+  nombre_participante: string;
+  @Column({
+    type: 'varchar',
+    length: 200,
+  })
+  persona_natural: string;
 
-  @ManyToOne(()=>PersonaJuridica,(personaJuridica)=>personaJuridica.titulosPropiedades)
-  persona_juridica:PersonaJuridica;
-  @ManyToOne(()=>Antecedente,(antecedente)=>antecedente.titulosPropiedades)
-  antecedente:Antecedente;
-  @ManyToOne(()=>Cliente,(cliente)=>cliente.cli_doc)
-  cliente:Cliente;
-  @OneToMany(()=>Interviniente,(interviniente)=>interviniente.tituloPropiedad)
-  intervinientes:Interviniente[];
-  @OneToOne(()=>Encargado,(encargado)=>encargado.tituloPropiedad)
-  encargado:Encargado;
+  @ManyToOne(
+    () => PersonaJuridica,
+    (personaJuridica) => personaJuridica.titulosPropiedades,
+  )
+  persona_juridica: PersonaJuridica;
+  @ManyToOne(() => Antecedente, (antecedente) => antecedente.titulosPropiedades)
+  antecedente: Antecedente;
+  @ManyToOne(() => Cliente, (cliente) => cliente.cli_doc)
+  cliente: Cliente;
+  @OneToMany(
+    () => Interviniente,
+    (interviniente) => interviniente.tituloPropiedad,
+  )
+  intervinientes: Interviniente[];
+  @OneToOne(() => Encargado, (encargado) => encargado.tituloPropiedad)
+  encargado: Encargado;
 }
